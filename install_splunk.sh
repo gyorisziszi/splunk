@@ -2,6 +2,7 @@
 SPLUNK_HOME="/opt/splunk"
 SPLUNK_LINUXUSER="splunk"
 SPLUNK_USER="admin"
+#modify the PW
 SPLUNK_PW="admin123"
 
 DEST_DIR="/tmp"
