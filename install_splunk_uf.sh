@@ -1,5 +1,5 @@
 #!/bin/bash
-SPLUNK_HOME="/opt/splunk"
+SPLUNK_HOME="/opt/splunkforwarder"
 SPLUNK_LINUXUSER="splunk"
 SPLUNK_USER="admin"
 #modify the PW
@@ -29,7 +29,12 @@ fi
 cd /opt
 rpm -i $FULL_PATH
 
-chown -R splunk:splunk /opt/splunk
+useradd splunk
+groupadd splunk
+
+echo "$SPLUNK_PW" | passwd --stdin $SPLUNK_LINUXUSER
+
+chown -R splunk:splunk $SPLUNK_HOME
 
 sudo -u $SPLUNK_LINUXUSER $SPLUNK_HOME/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd admin123
 
