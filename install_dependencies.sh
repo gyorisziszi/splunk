@@ -1,4 +1,5 @@
 #!/bin/bash
+yum install git -y
 yum install wget -y
 yum install nano -y
 yum install net-tools -y
