@@ -2,7 +2,7 @@
 yum install git -y
 yum install wget -y
 yum install nano -y
-yun install bind-utils -y
+yum install bind-utils -y
 yum install net-tools -y
 
 #install and enable ssh
