@@ -9,6 +9,7 @@ declare -A ALIASES=(
     ["git_clone"]="cd /opt/git && git clone https://github.com/gyorisziszi/splunk.git"
     ["git_pull"]="git --git-dir=/opt/git/splunk/.git --work-tree=~/splunk pull"
     ["git_del_repo"]="rm -rf /opt/git/splunk"
+    ["alias_install"]="bash /opt/splunk/git/install_aliases.sh"
 )
 
 RC_FILE="$HOME/.bashrc"
