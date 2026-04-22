@@ -10,7 +10,6 @@ declare -A ALIASES=(
     ["git_pull"]="git --git-dir=/opt/git/splunk/.git --work-tree=/opt/git/splunk pull"
     ["git_del_repo"]="rm -rf /opt/git/splunk"
     ["alias_install"]="bash /opt/git/splunk/install_aliases.sh"
-    ["all_install"]="bash /opt/git/splunk/install_all.sh"
     ["su_splunk"]="su - splunk"
     ["su_szilard"]="su - szilard"
     ["install_all"]="bash /opt/git/splunk/install_all.sh"
