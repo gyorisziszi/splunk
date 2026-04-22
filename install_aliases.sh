@@ -13,6 +13,7 @@ declare -A ALIASES=(
     ["all_install"]="bash /opt/git/splunk/install_all.sh"
     ["su_splunk"]="su - splunk"
     ["su_szilard"]="su - szilard"
+    ["install_all"]="bash /opt/git/splunk/install_all.sh"
 )
 
 RC_FILE="$HOME/.bashrc"
