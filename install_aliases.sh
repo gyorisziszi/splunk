@@ -6,6 +6,7 @@ declare -A ALIASES=(
     ["ll"]="ls -lah --color=auto"
     ["h"]="history"
     ["tail_splunk"]="sudo tail -f /opt/splunk/var/log/splunk/splunkd.log"
+    ["git_clone"]="cd /opt/git && git clone https://github.com/gyorisziszi/splunk.git"
 )
 
 RC_FILE="$HOME/.bashrc"
