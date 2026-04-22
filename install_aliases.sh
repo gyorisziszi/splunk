@@ -11,24 +11,26 @@ declare -A ALIASES=(
 )
 
 RC_FILE="$HOME/.bashrc"
+TEMP_FILE=$(mktemp)
 
 echo "Updating $RC_FILE..."
 
-# 2. Loop through the list
+# 2. Remove ALL existing aliases from the list first
 for name in "${!ALIASES[@]}"; do
-    command="${ALIASES[$name]}"
-    
-    # Check if alias already exists
-    if grep -q "alias $name=" "$RC_FILE"; then
-        echo "Skipping: '$name' already exists."
-    else
-        echo "Adding: '$name' -> $command"
-        echo "alias $name='$command'" >> "$RC_FILE"
-    fi
+    grep -v "alias $name=" "$RC_FILE" > "$TEMP_FILE"
+    mv "$TEMP_FILE" "$RC_FILE"
+    echo "Replaced: '$name'"
 done
 
-source $RC_FILE/.bashrc
+# 3. Add them back fresh
+for name in "${!ALIASES[@]}"; do
+    command="${ALIASES[$name]}"
+    echo "Adding: '$name' -> $command"
+    echo "alias $name='$command'" >> "$RC_FILE"
+done
 
-# 3. Final instruction
+source "$RC_FILE"
+
+# 4. Final instruction
 echo "---"
-echo "Done! To use them now, run: source ~/.bashrc"
+echo "Done! Aliases updated. Run 'source ~/.bashrc' if needed."
