@@ -31,8 +31,6 @@ for name in "${!ALIASES[@]}"; do
     echo "alias $name='$command'" >> "$RC_FILE"
 done
 
-source "$RC_FILE"
-
 # 4. Final instruction
 echo "---"
 echo "Done! Aliases updated. Run 'source ~/.bashrc' if needed."
