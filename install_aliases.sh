@@ -7,7 +7,8 @@ declare -A ALIASES=(
     ["h"]="history"
     ["tail_splunk"]="sudo tail -f /opt/splunk/var/log/splunk/splunkd.log"
     ["git_clone"]="cd /opt/git && git clone https://github.com/gyorisziszi/splunk.git"
-    ["git_pull"]="git --git-dir=~/splunk/.git --work-tree=~/splunk pull"
+    ["git_pull"]="git --git-dir=/opt/git/splunk/.git --work-tree=~/splunk pull"
+    ["git_del_repo"]="rm -rf /opt/git/splunk"
 )
 
 RC_FILE="$HOME/.bashrc"
