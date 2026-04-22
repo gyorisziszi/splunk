@@ -2,6 +2,7 @@
 yum install git -y
 yum install wget -y
 yum install nano -y
+yun install bind-utils -y
 yum install net-tools -y
 mkdir /opt/git
 cd /opt/git
