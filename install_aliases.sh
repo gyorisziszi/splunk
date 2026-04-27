@@ -14,6 +14,7 @@ declare -A ALIASES=(
     ["su_szilard"]="su - szilard"
     ["install_all"]="bash /opt/git/splunk/install_all.sh"
     ["sudo_splunk"]="sudo /opt/splunk/bin/splunk"
+    ["apply_cluster_bundle"]="opt/splunk/bin/splunk apply cluster-bundle"
 )
 
 RC_FILE="$HOME/.bashrc"
