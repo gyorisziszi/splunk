@@ -12,3 +12,5 @@ sudo systemctl enable sshd
 
 #bash install_splunk_ent.sh
 #bash install_splunk_uf.sh
+setfacl -R -d -m u:splunk:rwx /opt/splunk
+setfacl -R -d -m u:splunk:rwx /opt/git
