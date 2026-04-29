@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# 1. Define your aliases in a "Key=Value" format
-# Format: ["short_name"]="full command"
+# Check for root/sudo privileges (required to write to /etc/)
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root or with sudo."
+   exit 1
+fi
+
+# 1. Define your aliases
 declare -A ALIASES=(
     ["ll"]="ls -lah --color=auto"
     ["h"]="history"
@@ -14,29 +19,27 @@ declare -A ALIASES=(
     ["su_szilard"]="su - szilard"
     ["install_all"]="bash /opt/git/splunk/install_all.sh"
     ["sudo_splunk"]="sudo /opt/splunk/bin/splunk"
-    ["apply_cluster_bundle"]="opt/splunk/bin/splunk apply cluster-bundle"
+    ["apply_cluster_bundle"]="/opt/splunk/bin/splunk apply cluster-bundle"
 )
 
-RC_FILE="$HOME/.bashrc"
-TEMP_FILE=$(mktemp)
+# Target global configuration file
+GLOBAL_ALIAS_FILE="/etc/profile.d/splunk_aliases.sh"
 
-echo "Updating $RC_FILE..."
+echo "Creating/Updating global aliases in $GLOBAL_ALIAS_FILE..."
 
-# 2. Remove ALL existing aliases from the list first
-for name in "${!ALIASES[@]}"; do
-    grep -v "alias $name=" "$RC_FILE" > "$TEMP_FILE"
-    mv "$TEMP_FILE" "$RC_FILE"
-    echo "Replaced: '$name'"
-done
+# Clear the file first to avoid duplicates
+echo "# Global Splunk Aliases" > "$GLOBAL_ALIAS_FILE"
 
-# 3. Add them back fresh
+# 2. Loop through and add them to the global file
 for name in "${!ALIASES[@]}"; do
     command="${ALIASES[$name]}"
-    echo "Adding: '$name' -> $command"
-    echo "alias $name='$command'" >> "$RC_FILE"
+    echo "alias $name='$command'" >> "$GLOBAL_ALIAS_FILE"
+    echo "Configured: '$name'"
 done
 
-# 4. Final instruction
+# 3. Set correct permissions (readable by all)
+chmod 644 "$GLOBAL_ALIAS_FILE"
+
 echo "---"
-echo "Done! Aliases updated. Run 'source ~/.bashrc' if needed."
-source ~/.bashrc
+echo "Done! Aliases are now global."
+echo "Users must log out and back in, or run: source $GLOBAL_ALIAS_FILE"
