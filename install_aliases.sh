@@ -20,6 +20,7 @@ declare -A ALIASES=(
     ["install_all"]="bash /opt/git/splunk/install_all.sh"
     ["sudo_splunk"]="sudo /opt/splunk/bin/splunk"
     ["apply_cluster_bundle"]="/opt/splunk/bin/splunk apply cluster-bundle"
+    ["splunk_config_reload"]="curl -k -u admin -X POST https://localhost:8089/servicesNS/-/-/admin/localapps/_reload"
 )
 
 # Target global configuration file
