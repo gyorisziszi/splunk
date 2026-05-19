@@ -27,7 +27,7 @@ fi
 
 #Installation of Splunk
 cd /opt
-rpm -i $FULL_PATH
+rpm -Uvh $FULL_PATH
 
 chown -R splunk:splunk /opt/splunk
 
