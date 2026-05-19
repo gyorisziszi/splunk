@@ -30,7 +30,3 @@ cd /opt
 rpm -Uvh $FULL_PATH
 
 chown -R splunk:splunk /opt/splunk
-
-#sudo -u $SPLUNK_LINUXUSER $SPLUNK_HOME/bin/splunk start --accept-license --answer-yes --no-prompt --seed-passwd admin123
-
-$SPLUNK_HOME/bin/splunk enable boot-start -user $SPLUNK_LINUXUSER
